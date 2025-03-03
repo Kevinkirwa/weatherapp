@@ -2,7 +2,6 @@
 
 A real-time weather information web application built with Django that fetches data from OpenWeatherMap API.
 
-![Weather App Demo](demo-screenshot.png) <!-- Add your screenshot later -->
 
 ## Table of Contents
 - [Features](#features)
