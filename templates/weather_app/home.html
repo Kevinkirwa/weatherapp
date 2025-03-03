@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="text-center">Weather App</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                {{ form.city_name }}
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </div>
+                        </form>
+
+                        {% if weather_data %}
+                            <div class="text-center">
+                                <h2>{{ weather_data.city }}, {{ weather_data.country }}</h2>
+                                <img src="http://openweathermap.org/img/wn/{{ weather_data.icon }}@2x.png" 
+                                     alt="Weather icon" class="mb-3">
+                                <p class="h1">{{ weather_data.temperature }}°C</p>
+                                <p class="h4">{{ weather_data.description|title }}</p>
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <p>Humidity: {{ weather_data.humidity }}%</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>Wind: {{ weather_data.wind_speed }} m/s</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if error_message %}
+                            <div class="alert alert-danger mt-3">
+                                {{ error_message }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
